@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default > -->
+		<encoder>
+			<!-- FOR PRODUCTION 
+			<pattern>%d{HH:mm:ss} %level %logger%n</pattern>-->
+			<!-- FOR DEVELOPMENT because http://logback.qos.ch/manual/layouts.html : %M%F%L are not particularly fast. Thus, their use should be avoided unless execution speed is not an issue -->
+			<pattern>%d{HH:mm:ss} %level %logger.%M\(\): %m \(%F:%L\)%n%ex{full}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${CATALINA_HOME}/logs/generic.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      <!-- daily rollover -->
+	      <fileNamePattern>${CATALINA_HOME}/logs/generic.%d{yyyy-MM-dd}.log</fileNamePattern>
+	
+	      <!-- keep 30 days' worth of history -->
+	      <maxHistory>30</maxHistory>
+	    </rollingPolicy>
+		
+		<encoder>
+			<pattern>%level %logger %m%n%ex{full}</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="generic" level="DEBUG"/>
+	
+	<root level="INFO">
+<!--  	 	<appender-ref ref="FILE" /> -->
+	 	<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
