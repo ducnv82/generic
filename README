@@ -1,5 +1,5 @@
 This project is a skeleton for a Java web application. It is like appfuse http://www.appfuse.org/ but it is more lightweight.
-And it does not use interface, because, we often define interfaces but there is only 1 implementation, so, skip defining interfaces.
+And it does not use interface unnecessarily, because, we often define interfaces but there is only 1 implementation, so, skip defining interfaces.
 
 
 1. Package structures
